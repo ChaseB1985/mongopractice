@@ -6,11 +6,13 @@ module.exports = {
         res.send({ hi: 'there'});
     },
 
-    create(req, res) {
+    create(req, res, next) {
         const driverProps = req.body; 
 
         Driver.create(driverProps)
         //takes driver model, creates new driver, (pass in props we want to save )
-        .then(driver => res.send(driver));
+        .then(driver => res.send(driver))
+        .catch(next);
+        //if something goes wrong with the promise then it will catch
     }
 };

@@ -1,8 +1,9 @@
 const express = require('express');
+//express speaks to node for easy routing
 const routes = require('./routes/routes');
 const mongoose = require('mongoose');
 const app = express();
-const bodyPerser = require('body-parser');
+const bodyParser = require('body-parser');
 //Parse incoming request bodies in a middleware before your handlers, 
 //available under the req.body property.
 
@@ -15,8 +16,16 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 
-app.use(bodyPerser.json());
+app.use(bodyParser.json());
 routes(app);
+//call that sets up all routes in the application
+
+app.use((err, req, res, next) => {
+    //we can use app.use to register middleware
+    //next is a function which will force going to the next 
+    //middleware in the chain
+    res.send({ error: err.message });
+});
 
 
 module.exports = app;
