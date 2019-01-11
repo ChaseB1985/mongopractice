@@ -6,8 +6,8 @@ module.exports = (app) => {
 app.get('/api', DriversController.greeting);
 
 app.post('/api/drivers', DriversController.create);
-app.put('/api/drivers/:id', DriversController.edit)
+app.put('/api/drivers/:id', DriversController.edit);
 //match ANY route that is a put req with any string after /
 //express will auto fix
-app.delete('/api/drivers/:id', DriverController.delete);
+app.delete('/api/drivers/:id', DriversController.delete);
 };
