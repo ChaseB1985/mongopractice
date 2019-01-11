@@ -40,19 +40,19 @@ describe('Drivers Controller', () => {
                     });
                 });
             });
-    it('DELETE to /api/drivers/id can delete a driver', done => {
-        const driver = new Driver({ email: 'test@test.com' });
+        it('DELETE to /api/drivers/id can delete a driver', done => {
+            const driver = new Driver({ email: 'test@test.com' });
 
-        driver.save().then(() => {
-            request(app)
-            .delete(`/api/drivers/${driver._id}`)
-            .end(() => {
-                Driver.findOne({ email: 'test@test.com' })
-                .then((driver) => {
-                assert(driver === null); 
-                done(); 
+            driver.save().then(() => {
+                request(app)
+                .delete(`/api/drivers/${driver._id}`)
+                .end(() => {
+                    Driver.findOne({ email: 'test@test.com' })
+                    .then((driver) => {
+                    assert(driver === null); 
+                    done(); 
+                });
             });
         });
     });
-});
 });
